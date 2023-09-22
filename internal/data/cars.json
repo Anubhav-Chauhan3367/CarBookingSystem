@@ -1,0 +1,30 @@
+[
+	{
+		"id": 1,
+		"brand": "Toyota",
+		"model": "Camry",
+		"year": 2022,
+		"description": "A comfortable and reliable sedan."
+	},
+	{
+		"id": 2,
+		"brand": "Honda",
+		"model": "Civic",
+		"year": 2021,
+		"description": "A fuel-efficient compact car."
+	},
+	{
+		"id": 3,
+		"brand": "Ford",
+		"model": "Explorer",
+		"year": 2023,
+		"description": "A spacious SUV for family trips."
+	},
+	{
+		"id": 4,
+		"brand": "Volkswagon",
+		"model": "Latest",
+		"year": 2023,
+		"description": "Amazing Car!"
+	}
+]
