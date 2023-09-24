@@ -10,6 +10,12 @@ type Car struct {
     // Add more fields as needed
 }
 
+// CarWithAvailability represents a car along with its availability data.
+type CarWithAvailability struct {
+    Car         *Car          `json:"car"`
+    Availability []Availability `json:"availability"`
+}
+
 // NewCar creates a new Car instance.
 func NewCar(id int, brand, model string, year int, description string) *Car {
     return &Car{

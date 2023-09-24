@@ -46,12 +46,14 @@ func (r *BookingRepositoryJSON) GetAllBookings() ([]*models.Booking, error) {
 	defer r.mu.Unlock()
 
 	data, err := os.ReadFile(r.filePath)
+	fmt.Println(err)
 	if err != nil {
 		return nil, err
 	}
 
 	var bookings []*models.Booking
 	if err := json.Unmarshal(data, &bookings); err != nil {
+		// fmt.Println(err)
 		return nil, err
 	}
 

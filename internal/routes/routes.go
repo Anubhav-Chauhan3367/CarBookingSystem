@@ -1,12 +1,16 @@
 package routes
 
 import (
-	"github.com/gorilla/mux"
 	"github.com/Anubhav-Chauhan3367/CarBookingSystem.git/internal/handlers"
+	"github.com/gorilla/mux"
 )
 
 // Set up routes for your API
 func SetupRoutes(r *mux.Router) {
+
+    //Home Page/Default Page routes
+    r.HandleFunc("/", handlers.GetCarsWithAvailabilityData).Methods("GET")
+
     // User-related routes
     r.HandleFunc("/api/users", handlers.CreateUser).Methods("POST")
     r.HandleFunc("/api/users/{id}", handlers.GetUser).Methods("GET")

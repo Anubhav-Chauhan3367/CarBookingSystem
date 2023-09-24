@@ -1,7 +1,7 @@
 package models
 
 import (
-    "time"
+	"time"
 )
 
 // Booking represents a car booking made by a user.
@@ -12,6 +12,11 @@ type Booking struct {
     StartTime time.Time `json:"start_time"`
     EndTime   time.Time `json:"end_time"`
     // Add more fields as needed
+}
+type BookingAvailability struct {
+    ID int    `json:"id"`
+    StartTime time.Time `json:"start_time"`
+    EndTime   time.Time `json:"end_time"`
 }
 
 // NewBooking creates a new Booking instance.
