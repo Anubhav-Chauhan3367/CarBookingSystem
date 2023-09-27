@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/Anubhav-Chauhan3367/CarBookingSystem.git/internal/models"
 	"github.com/Anubhav-Chauhan3367/CarBookingSystem.git/internal/models/repositories"
@@ -24,11 +25,28 @@ func CreateBooking(w http.ResponseWriter, r *http.Request) {
 	booking := models.NewBooking(0, newBooking.UserID, newBooking.CarID, newBooking.StartTime, newBooking.EndTime)
 
 	// Create a BookingRepository instance with the path to the JSON data file
-	bookingRepository := repositories.NewBookingRepositoryJSON("internal/data/bookings.json")
+	bookingRepository := repositories.NewBookingRepositoryJSON("internal/data/booking.json")
+
+	// Create a CarRepository instance with the path to the JSON data file
+	carRepository := repositories.NewCarRepositoryJSON("internal/data/cars.json")
+
+	// Get the car associated with the booking
+	car, err := carRepository.GetCarByID(booking.CarID)
+	if err != nil {
+		http.Error(w, "Failed to fetch car", http.StatusInternalServerError)
+		return
+	}
+
+	// Check if the car is available for the requested time slot
+	if !IsCarAvailableForBooking(*car, booking.StartTime, booking.EndTime) {
+		http.Error(w, "Car is not available for the requested time slot", http.StatusBadRequest)
+		return
+	}
 
 	// Use the repository to create the booking
 	err = bookingRepository.CreateBooking(booking)
 	if err != nil {
+		fmt.Println(err)
 		http.Error(w, "Failed to create booking", http.StatusInternalServerError)
 		return
 	}
@@ -38,6 +56,31 @@ func CreateBooking(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(booking)
 }
+
+func IsCarAvailableForBooking(car models.Car, startTime time.Time, endTime time.Time) bool {
+	// Create a BookingRepository instance with the path to the JSON data file
+	bookingRepository := repositories.NewBookingRepositoryJSON("internal/data/booking.json")
+
+	// Get all bookings for the car
+	bookings, err := bookingRepository.GetBookingByID(car.ID)
+	if err != nil {
+		// Handle the error (e.g., log or return false)
+		return false
+	}
+
+	// Iterate through existing bookings
+	for _, booking := range bookings {
+		// Check for overlaps
+		if booking.StartTime.Before(endTime) && booking.EndTime.After(startTime) {
+			// There is an overlap, so the car is not available
+			return false
+		}
+	}
+
+	// No overlaps found, so the car is available
+	return true
+}
+
 
 // GetBooking retrieves a booking by its ID.
 func GetBooking(w http.ResponseWriter, r *http.Request) {
@@ -50,10 +93,10 @@ func GetBooking(w http.ResponseWriter, r *http.Request) {
 	fmt.Sscanf(bookingID, "%d", &id)
 
 	// Create a BookingRepository instance with the path to the JSON data file
-	bookingRepository := repositories.NewBookingRepositoryJSON("internal/data/bookings.json")
+	bookingRepository := repositories.NewBookingRepositoryJSON("internal/data/booking.json")
 
 	// Use the repository to get the booking by ID
-	booking, err := bookingRepository.GetBookingByID(id)
+	bookings, err := bookingRepository.GetBookingByID(id)
 	if err != nil {
 		http.Error(w, "Booking not found", http.StatusNotFound)
 		return
@@ -61,7 +104,7 @@ func GetBooking(w http.ResponseWriter, r *http.Request) {
 
 	// Respond with the booking details
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(booking)
+	json.NewEncoder(w).Encode(bookings)
 }
 
 // Implement other booking-related handlers as needed (update, delete, list, etc.)

@@ -1,0 +1,53 @@
+/* main.css */
+
+/* Reset some default browser styles */
+body,
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+/* Set a background color for the entire body */
+body {
+	background-image: url("../assets/images/background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	font-family: Arial, sans-serif;
+}
+
+/* Apply common styles to headings */
+h1,
+h2,
+h3 {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+/* Apply common styles to links */
+/* a {
+	color: #007bff; /* Change the link color as needed */
+/* text-decoration: none;
+} */
+/* a:hover {
+	text-decoration: underline;
+} */
+
+/* Apply styles to buttons */
+button {
+	padding: 10px 20px; /* Change the button color as needed */
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+button:hover {
+	background-color: #0056b3; /* Change the hover color as needed */
+}
+
+/* Add other global styles here */

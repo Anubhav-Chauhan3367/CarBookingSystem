@@ -17,8 +17,10 @@ func SetupRoutes(r *mux.Router) {
     // Add more user-related routes as needed
 
     // Car-related routes
+    r.HandleFunc("/api/allcars", handlers.GetAllCars).Methods("GET")
     r.HandleFunc("/api/cars", handlers.CreateCar).Methods("POST")
     r.HandleFunc("/api/cars/{id}", handlers.GetCar).Methods("GET")
+    
     // Add more car-related routes as needed
 
     // Booking-related routes

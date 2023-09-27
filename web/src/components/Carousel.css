@@ -1,0 +1,64 @@
+/* Carousel.css */
+
+.carousel-container {
+	width: 100%;
+	max-width: 800px; /* Adjust the max width as needed */
+	margin: 0 auto; /* Center the carousel */
+	padding: 20px;
+}
+
+/* Adjust the carousel styles as per your design */
+.carousel .slide {
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+}
+
+.carousel .slide img {
+	max-width: 100%;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.carousel .slide h2 {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.carousel .slide p {
+	font-size: 16px;
+	text-align: center;
+}
+
+/* Customize carousel navigation styles */
+.carousel .control-dots {
+	display: none; /* Hide the default navigation dots */
+}
+
+.carousel .thumbs-wrapper {
+	display: none; /* Hide the thumbnail navigation */
+}
+
+.carousel .control-prev,
+.carousel .control-next {
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	border: none;
+	border-radius: 50%;
+	padding: 10px;
+	font-size: 24px;
+	cursor: pointer;
+}
+
+.carousel .control-prev {
+	left: 20px;
+}
+
+.carousel .control-next {
+	right: 20px;
+}

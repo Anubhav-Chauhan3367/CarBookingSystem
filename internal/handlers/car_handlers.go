@@ -4,12 +4,30 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"time"
 	"sort"
+	"time"
+
 	"github.com/Anubhav-Chauhan3367/CarBookingSystem.git/internal/models"
 	"github.com/Anubhav-Chauhan3367/CarBookingSystem.git/internal/models/repositories"
 	"github.com/gorilla/mux"
 )
+
+func GetAllCars(w http.ResponseWriter, r *http.Request) {
+    // Create a CarRepository instance with the path to the JSON data file
+    carRepository := repositories.NewCarRepositoryJSON("internal/data/cars.json")
+
+    // Use the repository to get all cars
+    cars, err := carRepository.GetAllCars()
+    if err != nil {
+        http.Error(w, "Failed to fetch cars", http.StatusInternalServerError)
+        return
+    }
+	fmt.Println(cars)
+    // Respond with the list of cars as JSON
+    w.Header().Set("Content-Type", "application/json")
+    w.WriteHeader(http.StatusOK)
+    json.NewEncoder(w).Encode(cars)
+}
 
 // CreateCar handles the creation of a new car.
 func CreateCar(w http.ResponseWriter, r *http.Request) {
@@ -22,7 +40,7 @@ func CreateCar(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Create a new car instance using the model
-	car := models.NewCar(0, newCar.Brand, newCar.Model, newCar.Year, newCar.Description)
+	car := models.NewCar(0, newCar.Brand, newCar.Model, newCar.Year, newCar.Description, newCar.ImageUrl)
 
 	// Create a CarRepository instance with the path to the JSON data file
 	carRepository := repositories.NewCarRepositoryJSON("internal/data/cars.json")
@@ -115,7 +133,9 @@ func GetCarsWithAvailabilityData(w http.ResponseWriter, r *http.Request) {
 	// Populate cars with availability data
 	for _, car := range cars {
 		// Calculate car availability based on bookings
-		availability := calculateCarAvailability(carAvailability[car.ID])
+		currentDateTime := time.Now()
+		endDateTime := currentDateTime.AddDate(0, 1, 0) // 1 month into the future
+		availability := calculateCarAvailability(currentDateTime, endDateTime, carAvailability[car.ID])
 		carWithAvailability := models.CarWithAvailability{
 			Car:         car,
 			Availability: availability,
@@ -129,7 +149,7 @@ func GetCarsWithAvailabilityData(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(carsWithAvailability)
 }
 
-func calculateCarAvailability(bookings []models.BookingAvailability) []models.Availability {
+func calculateCarAvailability(currentDateTime time.Time, endDateTime time.Time, bookings []models.BookingAvailability) []models.Availability {
 	// Sort the bookings by start time
 	sort.Slice(bookings, func(i, j int) bool {
 		return bookings[i].StartTime.Before(bookings[j].StartTime)
@@ -137,27 +157,38 @@ func calculateCarAvailability(bookings []models.BookingAvailability) []models.Av
 
 	availability := []models.Availability{}
 
-	// Calculate availability based on sorted bookings
-	if len(bookings) > 0 {
-		start := bookings[0].EndTime
-		for _, booking := range bookings[1:] {
-			end := booking.StartTime
+	// Initialize the start and end times for availability calculation
+	start := currentDateTime
+	end := currentDateTime.AddDate(0, 1, 0) // 1 month into the future
+
+	// Calculate availability based on sorted bookings within the date range
+	for _, booking := range bookings {
+		if booking.StartTime.After(end) {
+			break
+		}
+
+		if booking.StartTime.After(start) {
+			// Append an available slot between start and booking.StartTime
 			availability = append(availability, models.Availability{
 				StartTime: start,
-				EndTime:   end,
+				EndTime:   booking.StartTime,
 			})
-			start = booking.EndTime
 		}
-		// Handle the last available time slot
+
+		if booking.EndTime.After(end) {
+			// Clip the end time to the date range
+			booking.EndTime = end
+		}
+
+		// Update the start time for the next iteration
+		start = booking.EndTime
+	}
+
+	// Append any remaining available slot within the date range
+	if start.Before(end) {
 		availability = append(availability, models.Availability{
 			StartTime: start,
-			EndTime:   bookings[len(bookings)-1].EndTime,
-		})
-	} else {
-		// If no bookings exist, the car is available all the time
-		availability = append(availability, models.Availability{
-			StartTime: time.Time{},
-			EndTime:   time.Time{},
+			EndTime:   end,
 		})
 	}
 

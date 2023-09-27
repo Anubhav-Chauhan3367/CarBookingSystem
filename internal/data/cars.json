@@ -4,27 +4,31 @@
 		"brand": "Toyota",
 		"model": "Camry",
 		"year": 2022,
-		"description": "A comfortable and reliable sedan."
+		"description": "A comfortable and reliable sedan.",
+		"imageurl": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
 	},
 	{
 		"id": 2,
 		"brand": "Honda",
 		"model": "Civic",
 		"year": 2021,
-		"description": "A fuel-efficient compact car."
+		"description": "A fuel-efficient compact car.",
+		"imageurl": "https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
 	},
 	{
 		"id": 3,
 		"brand": "Ford",
 		"model": "Explorer",
 		"year": 2023,
-		"description": "A spacious SUV for family trips."
+		"description": "A spacious SUV for family trips.",
+		"imageurl": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
 	},
 	{
 		"id": 4,
 		"brand": "Volkswagon",
 		"model": "Latest",
 		"year": 2023,
-		"description": "Amazing Car!"
+		"description": "Amazing Car!",
+		"imageurl": "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2Fyc3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
 	}
 ]

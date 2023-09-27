@@ -1,22 +1,37 @@
 package main
 
 import (
-    "fmt"
-    "net/http"
+	"fmt"
+	"net/http"
 
-    "github.com/gorilla/mux"
-    "github.com/Anubhav-Chauhan3367/CarBookingSystem.git/internal/routes"
+	"github.com/Anubhav-Chauhan3367/CarBookingSystem.git/internal/routes"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
 )
 
 func main() {
-    // Initialize a new Gorilla Mux router
+    // Create a new router
     r := mux.NewRouter()
 
-    // Setup routes by calling the SetupRoutes function from the routes package
     routes.SetupRoutes(r)
 
-    // Start the web server
-    port := 8080
-    fmt.Printf("Server started on :%d\n", port)
-    http.ListenAndServe(fmt.Sprintf(":%d", port), r)
+    // Configure CORS
+    cors := handlers.CORS(
+        handlers.AllowedOrigins([]string{"http://localhost:3000"}), // Replace with your frontend origin
+        handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"}),
+        handlers.AllowedHeaders([]string{"Content-Type"}),
+    )(r)
+
+    // Create an HTTP server with your router
+    srv := &http.Server{
+        Handler: cors,
+        Addr:    "localhost:8080", 
+    }
+
+    // Start the server
+    fmt.Println("Server Started on localhost:8080")
+    if err := srv.ListenAndServe(); err != nil {
+        panic(err)
+    }
+
 }

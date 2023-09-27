@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"sync"
+
 	"github.com/Anubhav-Chauhan3367/CarBookingSystem.git/internal/models"
 )
 
@@ -18,7 +19,7 @@ func NewBookingRepositoryJSON(filePath string) *BookingRepositoryJSON {
 	return &BookingRepositoryJSON{filePath: filePath}
 }
 
-func (r *BookingRepositoryJSON) GetBookingByID(id int) (*models.Booking, error) {
+func (r *BookingRepositoryJSON) GetBookingByID(id int) ([]models.Booking, error) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
@@ -31,14 +32,14 @@ func (r *BookingRepositoryJSON) GetBookingByID(id int) (*models.Booking, error) 
 	if err := json.Unmarshal(data, &bookings); err != nil {
 		return nil, err
 	}
-
+	filteredBookings := []models.Booking{}
 	for _, booking := range bookings {
 		if booking.ID == id {
-			return booking, nil
+			filteredBookings = append(filteredBookings, *booking)
 		}
 	}
 
-	return nil, fmt.Errorf("booking with ID %d not found", id)
+	return filteredBookings, nil
 }
 
 func (r *BookingRepositoryJSON) GetAllBookings() ([]*models.Booking, error) {

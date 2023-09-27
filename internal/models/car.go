@@ -7,6 +7,7 @@ type Car struct {
     Model       string `json:"model"`
     Year        int    `json:"year"`
     Description string `json:"description"`
+    ImageUrl    string `json:"imageurl"`
     // Add more fields as needed
 }
 
@@ -17,12 +18,13 @@ type CarWithAvailability struct {
 }
 
 // NewCar creates a new Car instance.
-func NewCar(id int, brand, model string, year int, description string) *Car {
+func NewCar(id int, brand, model string, year int, description string, imageurl string) *Car {
     return &Car{
         ID:          id,
         Brand:       brand,
         Model:       model,
         Year:        year,
         Description: description,
+        ImageUrl: imageurl,
     }
 }
