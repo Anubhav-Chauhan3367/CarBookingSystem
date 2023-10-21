@@ -4,13 +4,14 @@ import { useAuth } from "../../context/AuthContext";
 import "./Auth.css";
 
 const Register = () => {
-	const { login } = useAuth();
+	const { register } = useAuth();
 	const [formData, setFormData] = useState({
 		username: "",
 		email: "",
 		password: "",
 	});
 	const [error, setError] = useState(null);
+	const [successMessage, setSuccessMessage] = useState(null);
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -23,10 +24,17 @@ const Register = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			// Here, you should send a registration request to your backend API
-			// and handle user creation and login in your backend.
-			// For simplicity, we'll assume a successful registration logs in the user.
-			await login(formData.username, formData.password);
+			const response = await register(
+				formData.username,
+				formData.email,
+				formData.password
+			);
+			// Check if the response contains a success message or data
+			if (response.message) {
+				setSuccessMessage(response.message);
+			} else {
+				setError("Registration failed. Please try again.");
+			}
 		} catch (error) {
 			setError("Registration failed. Please try again.");
 		}
@@ -37,6 +45,9 @@ const Register = () => {
 			<div className="form-container">
 				<h2>Register</h2>
 				{error && <div className="error">{error}</div>}
+				{successMessage && (
+					<div className="success">{successMessage}</div>
+				)}
 				<form onSubmit={handleSubmit}>
 					<div>
 						<label htmlFor="username">Username</label>

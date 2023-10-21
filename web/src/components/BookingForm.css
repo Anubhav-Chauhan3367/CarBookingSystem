@@ -1,0 +1,95 @@
+.booking-form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0 auto;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+label {
+	font-weight: bold;
+	font-size: 16px;
+	display: block;
+	margin-bottom: 8px;
+	color: white;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"] {
+	color: black;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	outline: none;
+	background-color: rgba(255, 255, 255, 0.4);
+}
+
+input[type="text"]:disabled,
+input[type="number"]:disabled {
+	cursor: not-allowed;
+	color: black;
+	background-color: rgba(255, 255, 255, 0.4);
+}
+
+input[type="number"] {
+	color: black;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+	outline: none;
+	background-color: rgba(255, 255, 255, 0.4);
+}
+
+input[type="text"]:hidden {
+	display: none;
+}
+
+button {
+	background-color: #007bff;
+	color: #fff;
+	font-size: 16px;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+.error {
+	color: #f00;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.success {
+	color: #0f0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.time-slot {
+	border: 1px solid #ccc;
+	padding: 10px;
+	cursor: pointer;
+	text-align: center;
+	color: white;
+}
+
+.time-slot.available {
+	background-color: lightblue; /* Available slot background color */
+}
+
+.time-slot.unavailable {
+	background-color: lightpink; /* Unavailable slot background color */
+}

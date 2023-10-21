@@ -1,136 +1,18 @@
 /* Home.css */
 
-/* Reset some default styles */
-/* Home.css */
-
-/* Reset some default styles */
-body,
-html {
-	margin: 0;
-	padding: 0;
-	background-image: url("../assets/images/background.jpg");
-	background-size: cover; /* Adjust as needed */
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	font-family: Arial, sans-serif;
-}
-
-/* Set a background color for the body */
-body {
-	background-color: #f5f5f5;
-}
-
-/* Home.css */
-
-.container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-	height: 100vh; /* Adjust this value as needed */
-	overflow: hidden; /* Hide overflow when the carousel is fixed */
-}
-
-.carousel-container {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 100vh;
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity 0.5s, visibility 0.5s;
-	background-color: rgba(255, 255, 255, 0);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	z-index: 1; /* Ensure it's above the home container */
-	font-family: Arial, sans-serif;
-}
-
-/* Add this class to show the carousel */
-.show-carousel {
-	opacity: 1;
-	visibility: visible;
-}
-/* Home.css */
-
-/* ... Previous CSS styles ... */
-
-.home-container.hidden {
-	display: none;
-}
-
-.carousel-container.show-carousel {
-	opacity: 1;
-	visibility: visible;
-}
-
+/* Styles for the welcome section */
 .home-container {
-	width: 100%;
+	margin: 20% 0 50% 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
 	text-align: center;
-	background-color: rgba(255, 255, 255, 0);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	margin: 0;
-	padding: 0;
 	font-family: Arial, sans-serif;
-	position: relative; /* Add this to position the arrow relative to the home container */
+	gap: 30vh;
 }
 
 .welcome {
 	color: white;
-	margin-bottom: 20px;
-}
-
-.arrow {
-	margin-top: 20px;
-	position: absolute; /* Position the arrow absolutely within the home container */
-	bottom: 20px; /* Adjust this value as needed */
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 2; /* Ensure it's above the carousel */
-	cursor: pointer; /* Add a cursor pointer to indicate it's clickable */
-}
-
-.arrow i {
-	font-size: 24px;
-	animation: bounce 1.5s infinite;
-}
-
-.arrow:hover i {
-	animation-play-state: paused; /* Pause the bounce animation on hover */
-}
-
-@keyframes bounce {
-	0%,
-	20%,
-	50%,
-	80%,
-	100% {
-		transform: translateY(0);
-	}
-	40% {
-		transform: translateY(-10px);
-	}
-	60% {
-		transform: translateY(-5px);
-	}
-}
-
-.welcome h2 {
-	font-size: 16px;
-	line-height: 1.5;
-	color: white;
-	margin-bottom: 15px;
+	background-color: rgba(255, 255, 255, 0);
 }

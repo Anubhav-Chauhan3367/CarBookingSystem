@@ -1,3 +1,5 @@
+// CarCarousel.js
+
 import React, { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -16,6 +18,7 @@ function CarCarousel() {
 						headers: {
 							"Content-Type": "application/json",
 						},
+						credentials: "include",
 					}
 				);
 				if (!response.ok) {
@@ -23,6 +26,7 @@ function CarCarousel() {
 				}
 				const data = await response.json();
 				setCars(data);
+				console.log("Cars fetched successfully:", data);
 			} catch (error) {
 				console.error("Error fetching cars:", error);
 			}
@@ -31,26 +35,33 @@ function CarCarousel() {
 		fetchCars();
 	}, []);
 
+	const handleCarClick = (car) => {
+		console.log("Car clicked:", car);
+	};
+
 	return (
-		<div className="carousel-container">
+		<div>
 			<Carousel
-				showArrows={true}
-				showThumbs={false}
+				showArrows={false}
+				showThumbs={true}
 				showStatus={false}
 				infiniteLoop={true}
 				autoPlay={true}
-				interval={5000}
+				interval={4000}
 			>
 				{cars.map((car) => (
-					<div key={car.id}>
-						<img
-							src={car.imageUrl}
-							alt={`${car.brand} ${car.model}`}
-						/>
+					<div
+						className="carousel-slide"
+						key={car.id}
+						onClick={() => handleCarClick(car)}
+					>
 						<h2>
 							{car.brand} {car.model}
 						</h2>
-						<p>{car.description}</p>
+						<img
+							src={car.imageurl}
+							alt={`${car.brand} ${car.model}`}
+						/>
 					</div>
 				))}
 			</Carousel>

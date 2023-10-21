@@ -1,12 +1,15 @@
-/* Navbar.css */
-
-nav {
+.navbar {
 	background-color: rgba(240, 240, 240, 0.4);
 	color: #fff;
 	padding: 1rem;
+	position: fixed;
+	top: 0;
+	transition: top 0.3s;
+	width: 100%;
+	z-index: 100;
 }
 
-ul {
+.nav-links {
 	list-style: none;
 	display: flex;
 	justify-content: center;
@@ -14,34 +17,41 @@ ul {
 	padding: 0;
 }
 
-li {
+.nav-links li {
 	margin: 0 1rem;
 }
 
-a {
+.nav-links a {
 	text-decoration: none;
 	color: #fff;
 	font-weight: bold;
 	transition: color 0.3s ease;
 }
 
-a:hover {
-	color: #ff5733; /* Change the color on hover */
+.nav-links a:hover {
+	color: #ff5733;
 }
 
-/* Style the active link */
 .active {
-	color: yellow; /* Change the color for the active link */
+	color: yellow;
+}
+
+.hidden {
+	top: -80px; /* Hide the navbar by moving it above the viewport */
 }
 
 /* Media queries for responsiveness */
 @media screen and (max-width: 768px) {
-	ul {
+	.navbar {
+		top: 0;
+	}
+
+	.nav-links {
 		flex-direction: column;
 		text-align: center;
 	}
 
-	li {
+	.nav-links li {
 		margin: 0.5rem 0;
 	}
 }

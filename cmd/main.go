@@ -20,12 +20,13 @@ func main() {
         handlers.AllowedOrigins([]string{"http://localhost:3000"}), // Replace with your frontend origin
         handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"}),
         handlers.AllowedHeaders([]string{"Content-Type"}),
+        handlers.AllowCredentials(),
     )(r)
 
     // Create an HTTP server with your router
     srv := &http.Server{
         Handler: cors,
-        Addr:    "localhost:8080", 
+        Addr:    "localhost:8080", // Add "http://" here
     }
 
     // Start the server
@@ -33,5 +34,4 @@ func main() {
     if err := srv.ListenAndServe(); err != nil {
         panic(err)
     }
-
 }

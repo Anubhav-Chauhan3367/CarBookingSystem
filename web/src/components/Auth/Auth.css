@@ -72,3 +72,52 @@ button:hover {
 	margin-top: 10px;
 	text-align: center;
 }
+
+/* Styles for the Logout component */
+.logout-container {
+	position: relative;
+}
+
+.logout-button {
+	background-color: #ff5733;
+	color: #fff;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.confirmation-box {
+	position: absolute;
+	top: 30px;
+	right: 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	z-index: 1;
+}
+
+.confirmation-box p {
+	margin: 0;
+}
+
+.confirm-logout {
+	background-color: #ff5733;
+	color: #fff;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+.cancel-logout {
+	background-color: #ccc;
+	color: #333;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}

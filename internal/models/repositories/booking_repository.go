@@ -27,18 +27,19 @@ func (r *BookingRepositoryJSON) GetBookingByID(id int) ([]models.Booking, error)
 	if err != nil {
 		return nil, err
 	}
-
+	fmt.Println(data, "check10")
 	var bookings []*models.Booking
+	fmt.Println(bookings, "check11")
 	if err := json.Unmarshal(data, &bookings); err != nil {
 		return nil, err
 	}
 	filteredBookings := []models.Booking{}
 	for _, booking := range bookings {
-		if booking.ID == id {
+		if booking.CarID == id {
 			filteredBookings = append(filteredBookings, *booking)
 		}
 	}
-
+	fmt.Println(filteredBookings, "check9")
 	return filteredBookings, nil
 }
 

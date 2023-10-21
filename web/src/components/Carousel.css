@@ -1,64 +1,72 @@
 /* Carousel.css */
 
-.carousel-container {
-	width: 100%;
-	max-width: 800px; /* Adjust the max width as needed */
-	margin: 0 auto; /* Center the carousel */
-	padding: 20px;
-}
-
-/* Adjust the carousel styles as per your design */
 .carousel .slide {
-	background-color: #fff;
+	background-color: rgba(0, 0, 0, 0.3);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	padding: 20px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	transition: transform 0.3s ease;
+	color: #fff;
+	overflow: auto;
+}
+.caousel-slide {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 }
 
 .carousel .slide img {
 	max-width: 100%;
 	height: auto;
 	margin-bottom: 20px;
+	border-radius: 10px;
 }
 
 .carousel .slide h2 {
 	font-size: 24px;
 	margin-bottom: 10px;
+	color: #fff;
+	font-weight: bold;
 }
 
 .carousel .slide p {
 	font-size: 16px;
 	text-align: center;
+	color: #ccc;
 }
 
-/* Customize carousel navigation styles */
 .carousel .control-dots {
-	display: none; /* Hide the default navigation dots */
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
 }
 
-.carousel .thumbs-wrapper {
-	display: none; /* Hide the thumbnail navigation */
-}
-
-.carousel .control-prev,
-.carousel .control-next {
-	background-color: rgba(0, 0, 0, 0.5);
-	color: #fff;
-	border: none;
+.carousel .control-dots .dot {
+	background: white;
+	width: 10px;
+	height: 10px;
 	border-radius: 50%;
-	padding: 10px;
-	font-size: 24px;
+	margin: 0 5px;
 	cursor: pointer;
 }
 
-.carousel .control-prev {
-	left: 20px;
+.carousel .control-dots .dot.selected {
+	background: #007bff;
 }
 
-.carousel .control-next {
-	right: 20px;
+.carousel .thumbs-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.carousel .slide:hover {
+	transform: scale(1.02);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }

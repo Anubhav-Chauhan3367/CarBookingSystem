@@ -1,0 +1,71 @@
+.booking-details-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 6%;
+	padding: 20px;
+	gap: 25px;
+}
+
+h2 {
+	font-size: 24px;
+	color: white;
+}
+
+.calendar-container {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	border: 1px solid #ccc;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+.time-slots-container {
+	flex: 1;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.time-slot {
+	border: 1px solid #ccc;
+	padding: 10px;
+	cursor: pointer;
+	text-align: center;
+	color: white;
+}
+
+.time-slot.available {
+	background-color: lightblue; /* Available slot background color */
+}
+
+.time-slot.unavailable {
+	background-color: lightpink; /* Unavailable slot background color */
+}
+
+.booking-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+}
+
+input {
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+button {
+	background-color: #007bff;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+}
+
+h3 {
+	color: white;
+}

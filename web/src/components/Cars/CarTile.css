@@ -1,0 +1,31 @@
+.car-tile-link {
+	text-decoration: none;
+}
+
+.car-tile {
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding: 10px;
+	margin: 10px;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
+.car-tile img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 5px;
+}
+
+.car-details {
+	padding: 10px;
+}
+
+.car-details h2 {
+	font-size: 18px;
+	margin: 0;
+}
+
+.car-details p {
+	font-size: 14px;
+	margin: 0;
+}

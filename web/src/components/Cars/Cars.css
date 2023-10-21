@@ -1,0 +1,10 @@
+/* Cars.css */
+.cars-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 20px;
+	justify-items: center;
+	margin: 10% 0;
+}
+
+/* Add styling for CarTile component here */
